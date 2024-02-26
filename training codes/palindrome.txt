@@ -1,0 +1,21 @@
+def is_palindrome(num):
+    # Handle negative numbers
+    if num < 0:
+        return False
+    
+    # Convert the number to a string and reverse it
+    num_str = str(num)
+    reversed_str = num_str[::-1]
+
+    # Check if it's a palindrome
+    return num_str == reversed_str
+
+# Input a number from the user
+try:
+    number = int(input("Enter a number: "))
+    if is_palindrome(number):
+        print(f"{number} is a palindrome.")
+    else:
+        print(f"{number} is not a palindrome.")
+except ValueError:
+    print("Invalid input. Please enter a valid integer.")

@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h> // Include stdlib for the 'exit' function
+
+// Define the ATM transaction types
+typedef enum {
+    WITHDRAW = 1,
+    DEPOSIT = 2,
+    CHECK_BALANCE = 3,
+    QUIT = 4
+} TransactionType;
+
+// Define the ATM account balance
+unsigned long account_balance = 1000;
+
+// Function to handle withdrawal
+void handleWithdrawal() {
+    unsigned long withdrawal_amount;
+    printf("Enter the amount to withdraw: ");
+    scanf("%lu", &withdrawal_amount);
+
+    if (withdrawal_amount % 100 != 0) {
+        printf("Withdrawal amount must be a multiple of 100.\n");
+    } else if (withdrawal_amount > account_balance) {
+        printf("Insufficient balance.\n");
+    } else {
+        account_balance -= withdrawal_amount;
+        printf("Withdrawal successful. Please collect your cash.\n");
+    }
+}
+
+// Function to handle deposit
+void handleDeposit() {
+    unsigned long deposit_amount;
+    printf("Enter the amount to deposit: ");
+    scanf("%lu", &deposit_amount);
+
+    account_balance += deposit_amount;
+    printf("Deposit successful.\n");
+}
+
+// Function to check balance
+void checkBalance() {
+    printf("Your account balance is: %lu\n", account_balance);
+}
+
+// Main function
+int main() {
+    int choice;
+
+    while (1) {
+        // Display the ATM menu
+        printf("\n********Welcome to ATM Service**************\n");
+        printf("1. Withdraw Cash\n");
+        printf("2. Deposit Cash\n");
+        printf("3. Check Balance\n");
+        printf("4. Quit\n");
+        printf("******************? ... ");
+
+        // Get the user's choice
+        scanf("%d", &choice);
+
+        // Handle the selected transaction
+        switch ((TransactionType)choice) {
+            case WITHDRAW:
+                handleWithdrawal();
+                break;
+            case DEPOSIT:
+                handleDeposit();
+                break;
+            case CHECK_BALANCE:
+                checkBalance();
+                break;
+            case QUIT:
+                printf("Thank you for using our ATM. Goodbye!\n");
+                exit(0); // Exit the program
+            default:
+                printf("Invalid choice. Please choose a valid transaction.\n");
+        }
+    }
+
+    return 0;
+}

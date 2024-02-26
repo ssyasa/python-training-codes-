@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct student {
+    int roll_no;
+    int marks;
+    char name[40];
+};
+
+int main() {
+    struct student *p;
+    p = (struct student*) malloc(sizeof(struct student));
+    
+    if (p == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1; // Exit with an error code
+    }
+    
+    p->roll_no = 55;
+    p->marks = 75;
+    strcpy(p->name, "abc");
+    
+    printf("Roll number: %d\n", p->roll_no);
+    printf("Marks: %d\n", p->marks);
+    printf("Name: %s\n", p->name);
+    
+    free(p); // Don't forget to free the dynamically allocated memory when done
+    
+    return 0;
+}

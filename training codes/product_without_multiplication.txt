@@ -1,0 +1,15 @@
+def product_without_multiplication(a, b):
+    result = 0
+    if b < 0:
+        a, b = -a, -b  # Ensure positive multiplication
+
+    for _ in range(b):
+        result += a
+
+    return result
+
+# Example usage
+a = 5
+b = 3
+product = product_without_multiplication(a, b)
+print(f"The product of {a} and {b} is {product}")
